@@ -1,7 +1,15 @@
 ﻿using Emot.Common.Collections;
+using Emot.Common.Models;
 using Emot.Common.Models.Enums;
+using Emot.OpinionCollecting;
+using Emot.OpinionCollecting.Collectors.Citilink.Parsers;
+using Emot.OpinionCollecting.Collectors.Citilink.Uris;
+using Emot.OpinionCollecting.Interfaces;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Emot.ConsoleTestApp
 {
@@ -27,6 +35,19 @@ namespace Emot.ConsoleTestApp
                     Console.WriteLine("   - " + @class.Key.ToString() + @class.Value);
                 }
             }
+
+            var loader = new WebLoader();
+            var task = Task.Run(async () =>
+            {
+                var opinions = await loader.LoadAsync<CitilinkOpinionsPageParser, IEnumerable<Opinion>>(new CitilinkOpinionsPageUri(null, null));
+                foreach (var opinion in opinions)
+                {
+                    Console.WriteLine(opinion.Text);
+                }
+
+            });
+            task.Wait();
+
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }

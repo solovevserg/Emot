@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Emot.OpinionCollecting\Emot.OpinionCollecting.csproj" />
+  </ItemGroup>
+
 </Project>

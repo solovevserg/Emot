@@ -11,7 +11,7 @@ namespace Emot.Common.Models
         public int Id { get; set; }
 
         [Required]
-        public int Text { get; set; }
+        public string Text { get; set; }
 
         [Required]
         public OpinionClass OpinionClass { get; set; }
