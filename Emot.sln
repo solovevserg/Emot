@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot", "Emot\Emot.csproj", "{978B0060-D644-480A-82FA-D73606DE8AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emot", "Emot\Emot.csproj", "{978B0060-D644-480A-82FA-D73606DE8AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.Common", "Emot.Common\Emot.Common.csproj", "{8D02F00B-8007-4F2B-A0AD-196EAD2B94D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.Database", "Emot.Database\Emot.Database.csproj", "{5DAAAA8A-6CA1-4677-B4C7-E254BDF3D851}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.OpinionCollecting", "Emot.OpinionCollecting\Emot.OpinionCollecting.csproj", "{E2B1C002-1500-4BBB-B7AE-2D9C0942F435}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.OpinionCollecting.Collectors", "Emot.OpinionCollecting.Collectors\Emot.OpinionCollecting.Collectors.csproj", "{CE34EE69-A09A-44F4-A371-91EF5591F718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SentimentAnalysis", "Emot.SentimentAnalysis\Emot.SentimentAnalysis.csproj", "{73D6CB15-05E6-4CD2-B677-60ED3AFE4AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SentimentAnalysis.UnigramAnalyser", "Emot.SentimentAnalysis.UnigramAnalyser\Emot.SentimentAnalysis.UnigramAnalyser.csproj", "{FD630D30-9B5C-479A-87A9-86DFF8D6AA4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.Testing", "Emot.Testing\Emot.Testing.csproj", "{03057184-B41B-489C-9D89-D559F9E2A29C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SocialNetworks", "Emot.SocialNetworks\Emot.SocialNetworks.csproj", "{E502148E-8159-47DA-A298-967BC62E1566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SocialNetworks.Providers", "Emot.SocialNetworks.Providers\Emot.SocialNetworks.Providers.csproj", "{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +33,42 @@ Global
 		{978B0060-D644-480A-82FA-D73606DE8AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{978B0060-D644-480A-82FA-D73606DE8AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{978B0060-D644-480A-82FA-D73606DE8AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D02F00B-8007-4F2B-A0AD-196EAD2B94D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D02F00B-8007-4F2B-A0AD-196EAD2B94D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D02F00B-8007-4F2B-A0AD-196EAD2B94D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D02F00B-8007-4F2B-A0AD-196EAD2B94D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DAAAA8A-6CA1-4677-B4C7-E254BDF3D851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DAAAA8A-6CA1-4677-B4C7-E254BDF3D851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DAAAA8A-6CA1-4677-B4C7-E254BDF3D851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DAAAA8A-6CA1-4677-B4C7-E254BDF3D851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B1C002-1500-4BBB-B7AE-2D9C0942F435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B1C002-1500-4BBB-B7AE-2D9C0942F435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B1C002-1500-4BBB-B7AE-2D9C0942F435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B1C002-1500-4BBB-B7AE-2D9C0942F435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE34EE69-A09A-44F4-A371-91EF5591F718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE34EE69-A09A-44F4-A371-91EF5591F718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE34EE69-A09A-44F4-A371-91EF5591F718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE34EE69-A09A-44F4-A371-91EF5591F718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D6CB15-05E6-4CD2-B677-60ED3AFE4AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D6CB15-05E6-4CD2-B677-60ED3AFE4AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D6CB15-05E6-4CD2-B677-60ED3AFE4AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D6CB15-05E6-4CD2-B677-60ED3AFE4AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD630D30-9B5C-479A-87A9-86DFF8D6AA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD630D30-9B5C-479A-87A9-86DFF8D6AA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD630D30-9B5C-479A-87A9-86DFF8D6AA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD630D30-9B5C-479A-87A9-86DFF8D6AA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03057184-B41B-489C-9D89-D559F9E2A29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03057184-B41B-489C-9D89-D559F9E2A29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03057184-B41B-489C-9D89-D559F9E2A29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03057184-B41B-489C-9D89-D559F9E2A29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E502148E-8159-47DA-A298-967BC62E1566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E502148E-8159-47DA-A298-967BC62E1566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E502148E-8159-47DA-A298-967BC62E1566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E502148E-8159-47DA-A298-967BC62E1566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
