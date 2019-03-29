@@ -1,4 +1,5 @@
-﻿using Emot.Common.Models.Enums;
+﻿using Emot.Common.Interfaces;
+using Emot.Common.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Emot.Common.Models
 {
-    class TokenClassOccurence
+    public class TokenOccurence : IReadOnlyTokenOccurence
     {
         public int Id { get; set; }
 

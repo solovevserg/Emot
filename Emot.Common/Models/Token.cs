@@ -1,12 +1,12 @@
-﻿using Emot.Common.Models.Enums;
-using System;
+﻿using Emot.Common.Interfaces;
+using Emot.Common.Models.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Emot.Common.Models
 {
-    class Token
+    public class Token : IReadOnlyToken
     {
         public int Id { get; set; }
 
@@ -14,11 +14,14 @@ namespace Emot.Common.Models
         public string TokenText { get; set; }
 
         [Required]
-        public TokenType TokenType{ get; set; }
-        
-        public List<TokenClassOccurence> Occurences { get; set; }
+        public TokenType TokenType { get; set; }
+
+        public List<TokenOccurence> Occurences { get; set; }
 
         // In Purposes Of Caching
         public double Frequency { get; set; }
+
+        [NotMapped]
+        IEnumerable<IReadOnlyTokenOccurence> IReadOnlyToken.Occurences => Occurences;
     }
 }

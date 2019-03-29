@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SocialNetworks", "Emot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.SocialNetworks.Providers", "Emot.SocialNetworks.Providers\Emot.SocialNetworks.Providers.csproj", "{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emot.ConsoleTestApp", "Emot.ConsoleTestApp\Emot.ConsoleTestApp.csproj", "{C546F2EA-B543-4E77-B0FD-7E9B75A26456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BA6284A-E404-4B90-BF43-FC0DFFE8DE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C546F2EA-B543-4E77-B0FD-7E9B75A26456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C546F2EA-B543-4E77-B0FD-7E9B75A26456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C546F2EA-B543-4E77-B0FD-7E9B75A26456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C546F2EA-B543-4E77-B0FD-7E9B75A26456}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
