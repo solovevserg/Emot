@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="MyStem\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Emot.Common\Emot.Common.csproj" />
+  </ItemGroup>
+
+</Project>
