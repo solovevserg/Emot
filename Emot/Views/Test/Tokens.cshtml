@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Emot.Common.Models.Token>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Tokens";
+}
+
+<h1>Tokens</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Frequency)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TokenText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TokenType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Frequency)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var occurence in item.Occurences)
+                        {
+                            <li>@occurence.OpinionClass.ToString() @occurence.Count</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

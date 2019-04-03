@@ -18,5 +18,9 @@ namespace Emot.Database.Context
         }
 
         public DbSet<Opinion> Opinions { get; set; }
+
+        public DbSet<Token> Tokens { get; set; }
+
+        public DbSet<TokenOccurence> TokenOccurences { get; set; }
     }
 }

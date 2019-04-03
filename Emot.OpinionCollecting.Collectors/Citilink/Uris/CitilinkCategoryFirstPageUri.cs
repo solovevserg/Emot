@@ -7,9 +7,13 @@ namespace Emot.OpinionCollecting.Collectors.Citilink.Uris
 {
     class CitilinkCategoryFirstPageUri : IUri
     {
-        public string Get()
+        private readonly string _categoryPath;
+
+        public CitilinkCategoryFirstPageUri(string categryPath)
         {
-            throw new NotImplementedException();
+            _categoryPath = categryPath;
         }
+
+        public string Get() => $"https://www.citilink.ru/catalog/{_categoryPath}";
     }
 }

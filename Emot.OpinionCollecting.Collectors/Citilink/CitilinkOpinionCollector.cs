@@ -14,6 +14,9 @@ namespace Emot.OpinionCollecting.Collectors.Citilink
         public async Task<IEnumerable<Opinion>> GetAsync()
         {
             var loader= new WebLoader();
+            var mainPage = new CitilinkMainPageUri();
+            //var a = await loader.LoadAsync<CitilinkMainPageParser, >(mainPage);
+
             var uri = new CitilinkOpinionsPageUri("/mobile/cell_phones", "1008932");
             var opinions = await loader.LoadAsync<CitilinkOpinionsPageParser, IEnumerable<Opinion>>(uri);
             return opinions;

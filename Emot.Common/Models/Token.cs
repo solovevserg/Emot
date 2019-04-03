@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Emot.Common.Models
 {
-    public class Token : IReadOnlyToken
+    public class Token //: IReadOnlyToken
     {
         public int Id { get; set; }
 
@@ -16,12 +16,12 @@ namespace Emot.Common.Models
         [Required]
         public TokenType TokenType { get; set; }
 
-        public List<TokenOccurence> Occurences { get; set; }
+        public List<TokenOccurence> Occurences { get; set; } = new List<TokenOccurence>();
 
         // In Purposes Of Caching
         public double Frequency { get; set; }
 
-        [NotMapped]
-        IEnumerable<IReadOnlyTokenOccurence> IReadOnlyToken.Occurences => Occurences;
+        //[NotMapped]
+        //IEnumerable<IReadOnlyTokenOccurence> IReadOnlyToken.Occurences => Occurences;
     }
 }

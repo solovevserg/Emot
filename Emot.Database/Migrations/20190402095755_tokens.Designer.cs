@@ -4,14 +4,16 @@ using Emot.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Emot.Database.Migrations
 {
     [DbContext(typeof(EmotDbContext))]
-    partial class EmotDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190402095755_tokens")]
+    partial class tokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

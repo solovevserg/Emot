@@ -1,10 +1,8 @@
-using Emot.Database.Context;
+using Emot.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,11 +28,7 @@ namespace Emot
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=Emot;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<EmotDbContext>(options =>
-            {
-                options.UseSqlServer(connection);
-            });
+            services.AddEmotDatabase();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +53,7 @@ namespace Emot
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    template: "{controller=Test}/{action=Tokens}/{id?}");
             });
 
             app.UseSpa(spa =>

@@ -4,6 +4,6 @@ namespace Emot.OpinionCollecting.Collectors.Citilink.Uris
 {
     class CitilinkMainPageUri : IUri
     {
-        public string Get() => "";
+        public string Get() => "https://www.citilink.ru/";
     }
 }
