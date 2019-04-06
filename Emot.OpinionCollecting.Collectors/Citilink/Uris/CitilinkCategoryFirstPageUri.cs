@@ -1,19 +1,22 @@
 ﻿using Emot.OpinionCollecting.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Emot.OpinionCollecting.Collectors.Citilink.Uris
 {
-    class CitilinkCategoryFirstPageUri : IUri
+    class CitilinkCategoryFirstPageUri : Uri
     {
-        private readonly string _categoryPath;
-
-        public CitilinkCategoryFirstPageUri(string categryPath)
+        public CitilinkCategoryFirstPageUri(string uri) : base(uri + "?sorting=opinions_desc")
         {
-            _categoryPath = categryPath;
         }
 
-        public string Get() => $"https://www.citilink.ru/catalog/{_categoryPath}";
+        //private readonly string _categoryPath;
+
+        //public CitilinkCategoryFirstPageUri(string categryPath)
+        //{
+        //    _categoryPath = categryPath;
+        //}
+
+        //public string Get() => $"https://www.citilink.ru/catalog/{_categoryPath}";
     }
 }

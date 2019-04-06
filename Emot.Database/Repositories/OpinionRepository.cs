@@ -1,6 +1,7 @@
 ﻿using Emot.Common.Models;
 using Emot.Database.Context;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Emot.Database.Repositories
@@ -16,13 +17,25 @@ namespace Emot.Database.Repositories
 
         public void AddOpinion(Opinion opinion)
         {
-            _context.Add(opinion);
+            AddOneOpinion(opinion);
             _context.SaveChanges();
+        }
+
+        private void AddOneOpinion(Opinion opinion)
+        {
+            bool isDuplicate = _context.Opinions.Any(o => o.Source == opinion.Source);
+            if (!isDuplicate)
+            {
+                _context.Add(opinion);
+            }
         }
 
         public void AddOpinions(IEnumerable<Opinion> opinions)
         {
-            _context.AddRange(opinions);
+            foreach (var opinion in opinions)
+            {
+                AddOneOpinion(opinion);
+            }
             _context.SaveChanges();
         }
     }

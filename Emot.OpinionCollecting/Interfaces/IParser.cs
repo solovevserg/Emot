@@ -1,11 +1,8 @@
 ﻿using AngleSharp.Dom;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Emot.OpinionCollecting.Interfaces
 {
-    public interface IParser<TResult>
+    public interface IParser<TResult, TUri> where TUri : IUri
     {
         TResult Parse(IDocument document);
     }

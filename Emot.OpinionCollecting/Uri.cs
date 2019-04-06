@@ -5,14 +5,15 @@ using System.Text;
 
 namespace Emot.OpinionCollecting
 {
-    class Uri : IUri
+    public class Uri : IUri
     {
-        private readonly string _uri;
+        protected readonly string _uri;
 
         public Uri(string uri)
         {
             _uri = uri;
         }
+
         public string Get() => _uri;
     }
 }

@@ -8,12 +8,18 @@ using System.Text;
 
 namespace Emot.OpinionCollecting.Collectors.Citilink.Parsers
 {
-    class CitilinkCatergoryFirstPageParser : IParser<IEnumerable<CitilinkCategoryPageUri>>
+    class CitilinkCatergoryFirstPageParser : IParser<IEnumerable<CitilinkCategoryPageUri>, CitilinkCategoryFirstPageUri>
     {
         public IEnumerable<CitilinkCategoryPageUri> Parse(IDocument document)
         {
-            throw new NotImplementedException();
-            //var pageCountString = document.QuerySelector("#subcategoryList .page_listing ul li:last-child a").TextContent;
+            var uris = document.QuerySelectorAll("#subcategoryList .page_listing li.last a").Select(a => a.GetAttribute("href")).ToList();
+            uris.Add(document.BaseUri);
+            return uris.Select(uri => new CitilinkCategoryPageUri(uri));
+                
+               
+            
+                
+                //var pageCountString = document.QuerySelector("#subcategoryList .page_listing ul li:last-child a").TextContent;
             //int pageCount = int.Parse(pageCountString);
             //var uris = Enumerable.Range(1, pageCount).Select(i => new CitilinkCategoryPageUri());
         }

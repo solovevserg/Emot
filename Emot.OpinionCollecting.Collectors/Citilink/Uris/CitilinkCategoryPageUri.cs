@@ -5,18 +5,22 @@ using System.Text;
 
 namespace Emot.OpinionCollecting.Collectors.Citilink.Uris
 {
-    class CitilinkCategoryPageUri : IUri
+    class CitilinkCategoryPageUri : Uri
     {
-        private readonly string _categoryPath;
-        private readonly string _pageNumber;
 
-        public CitilinkCategoryPageUri(string categoryPath, string pageNumber)
+        //private readonly string _categoryPath;
+        //private readonly string _pageNumber;
+
+        //public CitilinkCategoryPageUri(string categoryPath, string pageNumber)
+        //{
+        //    _categoryPath = categoryPath;
+        //    _pageNumber = pageNumber;
+        //}
+
+        //public string Get() => $"https://www.citilink.ru/catalog/{_categoryPath}/{_pageNumber}/otzyvy";
+
+        public CitilinkCategoryPageUri(string uri) : base(uri)
         {
-            _categoryPath = categoryPath;
-            _pageNumber = pageNumber;
         }
-
-        public string Get() => $"https://www.citilink.ru/catalog/{_categoryPath}/{_pageNumber}/otzyvy";
-
     }
 }
