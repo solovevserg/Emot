@@ -14,13 +14,13 @@ namespace Emot.OpinionCollecting.Collectors.Citilink
     {
         private readonly int categoriesFrom;
         private readonly int categoriesCount;
-        private readonly int categoryPagesCount;
+        private readonly int goodsPageCount;
 
         public CitilinkOpinionCollector(int categoriesFrom = 0, int categoriesCount = int.MaxValue, int categoryPagesCount = int.MaxValue)
         {
             this.categoriesFrom = categoriesFrom;
             this.categoriesCount = categoriesCount;
-            this.categoryPagesCount = categoryPagesCount;
+            this.goodsPageCount = categoryPagesCount;
         }
 
         public async Task<IEnumerable<Opinion>> GetAsync()
@@ -28,9 +28,9 @@ namespace Emot.OpinionCollecting.Collectors.Citilink
             var loader= new WebLoader();
             var mainPage = new CitilinkMainPageUri();
             var firstPageUris = await loader.LoadAsync(mainPage, new CitilinkMainPageParser());
-            var categoryPageUris = await loader.LoadFlattenManyAsync(firstPageUris.Skip(categoriesFrom).Take(categoriesCount), new CitilinkCatergoryFirstPageParser());
-            var opinionsPageUris = await loader.LoadFlattenManyAsync(categoryPageUris.Take(categoryPagesCount), new CitilinkCategoryPageParser());
-            var opinions = await loader.LoadFlattenManyAsync(opinionsPageUris.Take(3), new CitilinkOpinionsPageParser());
+            var goodsPageUris = await loader.LoadFlattenManyAsync(firstPageUris.Skip(categoriesFrom).Take(categoriesCount), new CitilinkCatergoryFirstPageParser(goodsPageCount));
+            var opinionsPageUris = await loader.LoadFlattenManyAsync(goodsPageUris, new CitilinkCategoryPageParser());
+            var opinions = await loader.LoadFlattenManyAsync(opinionsPageUris, new CitilinkOpinionsPageParser());
             return opinions;
         }
     }

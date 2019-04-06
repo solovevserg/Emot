@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Emot.Common.Collections;
-using Emot.Database.Context;
+﻿using Emot.Database.Context;
 using Emot.Database.Repositories;
 using Emot.OpinionCollecting.Collectors.Citilink;
 using Emot.Stemming;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Emot.Controllers
 {
@@ -33,11 +30,11 @@ namespace Emot.Controllers
         // GET: Test
         public async Task<IActionResult> Index()
         {
-            _context.Opinions.RemoveRange(_context.Opinions);
-            _context.Tokens.RemoveRange(_context.Tokens);
-            _context.SaveChanges();
-            var a = _context.TokenOccurences.Count();
-            var collector = new CitilinkOpinionCollector(10, 5, 3);
+            //_context.RemoveRange(_context.Tokens);
+            //_context.RemoveRange(_context.Opinions);
+            //_context.SaveChanges();
+
+            var collector = new CitilinkOpinionCollector(0, 10, 3);
             var opinions = await collector.GetAsync();
             Console.WriteLine($"Opinions colledcted {opinions.Count()}");
 
@@ -64,7 +61,7 @@ namespace Emot.Controllers
                 }
                 Console.WriteLine();
             }
-            return Json(new object());
+            return Json(tokens);
 
         }
 
@@ -90,14 +87,18 @@ namespace Emot.Controllers
 
         public IActionResult Tokens()
         {
-            var tokens = _context.Tokens.Include(t => t.Occurences).Where(t => t.Frequency > 0.002).Where(t => t.Occurences.Count >= 2).ToList();
+            var tokens = _context.Tokens.Include(t => t.Occurences).ToList();//.Where(t => t.Occurences.Count >= 2).ToList();
             var sortedTokens = tokens.OrderByDescending(t =>
             {
-                var positive = t.Occurences.First(o => o.OpinionClass == Common.Models.Enums.OpinionClass.Positive);
-                var negative = t.Occurences.First(o => o.OpinionClass == Common.Models.Enums.OpinionClass.Negative);
+                var positive = t.Occurences.FirstOrDefault(o => o.OpinionClass == Common.Models.Enums.OpinionClass.Positive);
+                var negative = t.Occurences.FirstOrDefault(o => o.OpinionClass == Common.Models.Enums.OpinionClass.Negative);
+                if (positive == null || negative == null)
+                {
+                    return 0;
+                }
                 return (double)positive.Count / negative.Count;
             });
-            return View(sortedTokens);
+            return View(tokens);
         }
     }
 }

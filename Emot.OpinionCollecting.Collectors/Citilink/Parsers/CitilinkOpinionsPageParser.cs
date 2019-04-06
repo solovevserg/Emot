@@ -29,6 +29,7 @@ namespace Emot.OpinionCollecting.Collectors.Citilink.Parsers
                 OpinionClass = Common.Models.Enums.OpinionClass.Negative,
                 Source = $"{document.Url} {i}",
             });
+            Console.WriteLine($"There are {positiveOpinions.Count()} positive and {negativeOpinions.Count()} negative opinions.");
             return positiveOpinions.Concat(negativeOpinions);
         }
     }

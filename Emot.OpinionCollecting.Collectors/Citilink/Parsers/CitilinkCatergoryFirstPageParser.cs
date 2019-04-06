@@ -10,18 +10,20 @@ namespace Emot.OpinionCollecting.Collectors.Citilink.Parsers
 {
     class CitilinkCatergoryFirstPageParser : IParser<IEnumerable<CitilinkCategoryPageUri>, CitilinkCategoryFirstPageUri>
     {
+        private readonly int _pageCount;
+
+        public CitilinkCatergoryFirstPageParser(int pageCount = int.MaxValue)
+        {
+            _pageCount = pageCount;
+        }
         public IEnumerable<CitilinkCategoryPageUri> Parse(IDocument document)
         {
-            var uris = document.QuerySelectorAll("#subcategoryList .page_listing li.last a").Select(a => a.GetAttribute("href")).ToList();
-            uris.Add(document.BaseUri);
-            return uris.Select(uri => new CitilinkCategoryPageUri(uri));
-                
-               
-            
-                
-                //var pageCountString = document.QuerySelector("#subcategoryList .page_listing ul li:last-child a").TextContent;
-            //int pageCount = int.Parse(pageCountString);
-            //var uris = Enumerable.Range(1, pageCount).Select(i => new CitilinkCategoryPageUri());
+            var listingUris = document.QuerySelectorAll(".page_listing li a").Select(a => a.GetAttribute("href")).ToList();
+            var submenuItemsUris = document.QuerySelectorAll(".subnavigation catalog-content-navigation__item li a").Select(a => a.GetAttribute("href"));
+            listingUris.AddRange(submenuItemsUris);
+            listingUris.Add(document.BaseUri);
+            Console.WriteLine($"There are {listingUris.Count} links on this page");
+            return listingUris.Take(_pageCount).Select(uri => new CitilinkCategoryPageUri(uri));
         }
     }
 }
