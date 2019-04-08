@@ -46,7 +46,9 @@ namespace Emot.Stemming
         private async Task<IEnumerable<string>> StemOneClassOpinions(IEnumerable<Opinion> oneClassOpinions)
         {
             var texts = oneClassOpinions.Select(o => o.Text);
+            Console.WriteLine($"{texts.Count()} will be stemmed");
             var text = string.Join(' ', texts);
+            Console.WriteLine("Texts were combined");
             var lems = await StemAsync(text);
             return lems;
         }

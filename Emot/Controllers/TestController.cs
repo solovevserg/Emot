@@ -1,10 +1,13 @@
-﻿using Emot.Database.Context;
+﻿using Emot.Common.Collections;
+using Emot.Database.Context;
 using Emot.Database.Repositories;
-using Emot.OpinionCollecting.Collectors.Citilink;
+using Emot.MockData;
+using Emot.SentimentAnalysis.UnigramAnalyser;
 using Emot.Stemming;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,40 +31,37 @@ namespace Emot.Controllers
         }
 
         // GET: Test
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Indexs()
         {
-            //_context.RemoveRange(_context.Tokens);
             //_context.RemoveRange(_context.Opinions);
-            //_context.SaveChanges();
+            _context.RemoveRange(_context.Tokens);
+            _context.SaveChanges();
 
-            var collector = new CitilinkOpinionCollector(0, 10, 3);
-            var opinions = await collector.GetAsync();
-            Console.WriteLine($"Opinions colledcted {opinions.Count()}");
+            //var collector = new CitilinkOpinionCollector(0, 10, 3);
+            //var opinions = await collector.GetAsync();
+            //Console.WriteLine($"Opinions colledcted {opinions.Count()}");
 
-            _opinionsRepository.AddOpinions(opinions);
-            Console.WriteLine($"Opinions stored in Db");
+            //_opinionsRepository.AddOpinions(opinions);
+            //Console.WriteLine($"Opinions stored in Db");
 
             var stemmer = new Stemmer();
             Console.WriteLine($"Stemming is starting");
 
-            var tokenCollection = await stemmer.StemAsync(opinions);
-            Console.WriteLine($"Done! Token collection {tokenCollection.Count}");
-
-            await _tokenRepository.AddTokenCollection(tokenCollection);
-            Console.WriteLine($"Done! Token collection was stored in Db");
-
-            var tokens = _context.Tokens.Include(t => t.Occurences);
-
-            foreach (var token in tokens)
+            var opinionsCount = _context.Opinions.Count();
+            for (int i = 0; i < opinionsCount; i += 50)
             {
-                Console.Write($"Token: {token.TokenText}");
-                foreach (var classOccurence in token.Occurences)
+                Task.Run(async () =>
                 {
-                    Console.Write($" {classOccurence.OpinionClass} - {classOccurence.Count}");
-                }
-                Console.WriteLine();
+                    var opinions = _context.Opinions.Skip(i).Take(50);
+                    var tokenCollection = await stemmer.StemAsync(opinions);
+                    Console.WriteLine($"Done! Token collection {tokenCollection.Count}");
+                    await _tokenRepository.AddTokenCollection(tokenCollection);
+                    Console.WriteLine($"Done! Token collection was stored in Db");
+                }).Wait();
+                Console.WriteLine($"{i} opinions processed.");
             }
-            return Json(tokens);
+
+            return Json(_context.Tokens);
 
         }
 
@@ -98,7 +98,26 @@ namespace Emot.Controllers
                 }
                 return (double)positive.Count / negative.Count;
             });
-            return View(tokens);
+            return View(sortedTokens);
+        }
+
+        public async Task<IActionResult> Putin()
+        {
+            string text = PutinSpeach.Text;
+            var paragraphs = text.Split( new char[] { '\n', '\r'}, StringSplitOptions.RemoveEmptyEntries).OrderByDescending(p => p.Length).Take(10).ToList();
+            ViewBag.Text = text;
+            ViewBag.Paragraphs = paragraphs.Select(p => p.Split(' ')).ToList();
+
+            var tokens = TokenCollection.FromIEnumerable(_context.Tokens.Include(t => t.Occurences));
+            ViewBag.Tokens = tokens;
+            var analyser = new UnigramNaiveAnalyser(tokens);
+            var results = new List<(double, double)>();
+            foreach (var p in paragraphs)
+            {
+                results.Add(await analyser.AnalyseAsync(p));
+            }
+            ViewBag.Results = results;
+            return View();
         }
     }
 }

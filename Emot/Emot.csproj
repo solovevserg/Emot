@@ -35,6 +35,7 @@
     <ProjectReference Include="..\Emot.Common\Emot.Common.csproj" />
     <ProjectReference Include="..\Emot.Database\Emot.Database.csproj" />
     <ProjectReference Include="..\Emot.OpinionCollecting.Collectors\Emot.OpinionCollecting.Collectors.csproj" />
+    <ProjectReference Include="..\Emot.SentimentAnalysis.UnigramAnalyser\Emot.SentimentAnalysis.UnigramAnalyser.csproj" />
     <ProjectReference Include="..\Emot.Stemming\Emot.Stemming.csproj" />
   </ItemGroup>
 

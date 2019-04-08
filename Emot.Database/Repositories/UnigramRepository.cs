@@ -43,7 +43,7 @@ namespace Emot.Database.Repositories
                     dbOccurence = new TokenOccurence() { OpinionClass = @class };
                     dbToken.Occurences.Add(dbOccurence);
                 }
-                dbOccurence.Count += occurencesClassCollection.Count;
+                dbOccurence.Count += occurencesClassCollection[@class];
             }
         }
     }

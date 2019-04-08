@@ -50,5 +50,18 @@ namespace Emot.Common.Collections
                 this[occurence] = new OccurencesClassCollection();
             }
         }
+
+        public static TokenCollection FromIEnumerable(IEnumerable<Token> tokens)
+        {
+            var collection = new TokenCollection();
+            foreach (var token in tokens)
+            {
+                foreach (var tokenOccurence in token.Occurences)
+                {
+                    collection.AddOccurences(tokenOccurence.OpinionClass, token.TokenText, tokenOccurence.Count);
+                }
+            }
+            return collection;
+        }
     }
 }

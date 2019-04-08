@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Emot.Common\Emot.Common.csproj" />
+    <ProjectReference Include="..\Emot.Stemming\Emot.Stemming.csproj" />
+  </ItemGroup>
+
 </Project>
