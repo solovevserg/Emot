@@ -1,4 +1,4 @@
-﻿using Emot.Common.Collections;
+﻿using Emot.Common.Models;
 using Emot.Common.Models.Enums;
 using Emot.Stemming;
 using System;
@@ -10,9 +10,9 @@ namespace Emot.SentimentAnalysis.UnigramAnalyser
 {
     public class UnigramNaiveAnalyser
     {
-        private readonly TokenCollection _tokens;
+        private readonly List<Token> _tokens;
 
-        public UnigramNaiveAnalyser(TokenCollection tokens)
+        public UnigramNaiveAnalyser(List<Token> tokens)
         {
             _tokens = tokens;
         }
@@ -21,30 +21,21 @@ namespace Emot.SentimentAnalysis.UnigramAnalyser
         {
             var stemmer = new Stemmer();
             var words = await stemmer.StemAsync(text);
-            int pos = 0;
-            int neg = 0;
+            double pos = 0;
+            double neg = 0;
             double assessment = 1;
             int count = 0;
 
             foreach (var word in words)
             {
-                if(!_tokens.ContainsKey(word))
+                var token = _tokens.Where(t => t.Occurences.Count >= 2).FirstOrDefault(t => t.TokenText == word);
+                if(token == null)
                 {
                     continue;
                 }
-                //if(_tokens[word].Count != 2)
-                //{
-                //    continue;
-                //}
-
-                if (_tokens[word].ContainsKey(OpinionClass.Positive))
-                {
-                    pos += _tokens[word][OpinionClass.Positive];
-                }
-                if (_tokens[word].ContainsKey(OpinionClass.Negative))
-                {
-                    neg += _tokens[word][OpinionClass.Negative];
-                }
+                pos += token.Occurences.FirstOrDefault(o => o.OpinionClass == OpinionClass.Positive)?.Count ?? 0;
+                neg += token.Occurences.FirstOrDefault(o => o.OpinionClass == OpinionClass.Negative)?.Count ?? 0;
+                
                 count++;
             }
             assessment *= (double)pos / neg;

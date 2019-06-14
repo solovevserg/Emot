@@ -53,7 +53,7 @@ namespace Emot
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Test}/{action=Putin}/{id?}");
+                    template: "{controller=Test}/{action=Tokens}/{id?}");
             });
 
             app.UseSpa(spa =>

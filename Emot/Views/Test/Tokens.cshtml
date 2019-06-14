@@ -40,9 +40,9 @@
                 </td>
                 <td>
                     <ul>
-                        @foreach (var occurence in item.Occurences)
+                        @foreach (var occurence in item.Occurences.OrderBy(o => o.OpinionClass))
                         {
-                            <li>@occurence.OpinionClass.ToString() @occurence.Count</li>
+                            <li>@occurence.OpinionClass.ToString() @occurence.Count @occurence.Frequency</li>
                         }
                     </ul>
                 </td>

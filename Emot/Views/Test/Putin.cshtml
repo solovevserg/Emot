@@ -9,21 +9,22 @@ Count: @ViewBag.Paragraphs.Count <br>
 <ul>
     @for (int i = 0; i < ViewBag.Paragraphs.Count; i++)
     {
-        <li>
-            <b>@ViewBag.Results[i].Item1/@ViewBag.Results[i].Item2</b>@foreach (var word in ViewBag.Paragraphs[i])
+    <li style="background: rgb(@((ViewBag.Results[i].Item2/ViewBag.Results[i].Item1*255).ToString("N0")) , @((ViewBag.Results[i].Item1/ViewBag.Results[i].Item2*255).ToString("N0")),0)">
+        @((ViewBag.Results[i].Item1 / ViewBag.Results[i].Item2).ToString("N0"))
+        <b style="background: red;">@ViewBag.Results[i].Item1/@ViewBag.Results[i].Item2</b>@foreach (var word in ViewBag.Paragraphs[i])
+        {
+            @if (ViewBag.Tokens.ContainsKey(word))
             {
-                @if (ViewBag.Tokens.ContainsKey(word))
-                {
-                    <span title="@ViewBag.Tokens[word]" style="background: rgb(200, 200 ,0);" >@word</span>
-                }
-                else
-                {
-                    <text>
-                        @word
-                    </text>
-                }
+                <span title="@ViewBag.Tokens[word]" style="background: lightblue;">@word</span>
             }
-        </li>
+            else
+            {
+                <text>
+                    @word
+                </text>
+            }
+        }
+    </li>
     }
 </ul>
 
